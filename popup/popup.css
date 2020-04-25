@@ -1,0 +1,9 @@
+#snapperC {
+    width: 100%;
+    text-align: center;
+}
+#snapper {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
