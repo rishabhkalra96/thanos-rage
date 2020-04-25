@@ -7,14 +7,19 @@ snapBtn.addEventListener('click', (e) => {
         let tabsToDelete = Math.floor(totalTabIds.length/2);
         let tabdeleteArray = [];
         // window.alert('total tabs to delete ' + tabsToDelete);
-        while(tabsToDelete >= 1) {
-            let random = Math.floor(Math.random() * (totalTabIds.length - 1 + 1) ) + 1;
-            const tabId = totalTabIds[random];
-            if (!tabdeleteArray.includes(tabId)) {
-                tabdeleteArray.push(tabId);
-                tabsToDelete -= 1;
+        if (tabsToDelete == 1) {
+            chrome.tabs.remove(totalTabIds[0], () => {});    
+        } else {
+            while(tabsToDelete >= 1) {
+                let random = Math.floor(Math.random() * (totalTabIds.length - 1 + 1) ) + 1;
+                window.alert('random is ' + random);
+                const tabId = totalTabIds[random];
+                if (!tabdeleteArray.includes(tabId)) {
+                    tabdeleteArray.push(tabId);
+                    tabsToDelete -= 1;
+                }
             }
+            chrome.tabs.remove(tabdeleteArray, () => {});
         }
-        chrome.tabs.remove(tabdeleteArray, () => {});
     });
 });
